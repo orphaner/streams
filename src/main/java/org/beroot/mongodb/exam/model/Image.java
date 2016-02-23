@@ -11,5 +11,6 @@ public class Image {
 	private Integer id;
 	private int width;
 	private int height;
+	private Long sizeInByte;
 	private List<String> tags;
 }
