@@ -1,7 +1,10 @@
 package org.beroot.streams;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -30,5 +33,29 @@ public class CollectStream {
 				.flatMap(image -> image.getTags().stream())
 				.distinct()
 				.collect(Collectors.joining(", "));
+	}
+
+	public List<String> collectWithListAccumulator(List<Image> images) {
+		return images.stream()
+				.flatMap(image -> image.getTags().stream())
+				.collect(ArrayList::new, List::add, List::addAll);
+	}
+
+	public List<String> collectWithListCollector(List<Image> images) {
+		return images.stream()
+				.flatMap(image -> image.getTags().stream())
+				.collect(Collectors.toList());
+	}
+
+	public Set<String> collectWithSetAccumulator(List<Image> images) {
+		return images.stream()
+				.flatMap(image -> image.getTags().stream())
+				.collect(TreeSet::new, Set::add, Set::addAll);
+	}
+
+	public Set<String> collectWithSetCollector(List<Image> images) {
+		return images.stream()
+				.flatMap(image -> image.getTags().stream())
+				.collect(Collectors.toSet());
 	}
 }

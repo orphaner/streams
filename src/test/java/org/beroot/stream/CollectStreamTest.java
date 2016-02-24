@@ -40,6 +40,34 @@ public class CollectStreamTest {
 				.isEqualTo("java, stream, lambda");
 	}
 
+	@Test
+	public void collectWithListAccumulatorTest() {
+		assertThat(collectStream.collectWithListAccumulator(getImages()))
+				.hasSize(4)
+				.containsOnly("java", "stream", "java", "lambda");
+	}
+
+	@Test
+	public void collectWithListCollectorTest() {
+		assertThat(collectStream.collectWithListCollector(getImages()))
+				.hasSize(4)
+				.containsOnly("java", "stream", "java", "lambda");
+	}
+
+	@Test
+	public void collectWithSetAccumulatorTest() {
+		assertThat(collectStream.collectWithSetAccumulator(getImages()))
+				.hasSize(3)
+				.containsOnly("java", "stream", "lambda");
+	}
+
+	@Test
+	public void collectWithSetCollectorTest() {
+		assertThat(collectStream.collectWithSetCollector(getImages()))
+				.hasSize(3)
+				.containsOnly("java", "stream", "lambda");
+	}
+
 	private List<Image> getImages() {
 		Image image = Image.builder().tags(Arrays.asList("java", "stream")).build();
 		Image image2 = Image.builder().tags(Arrays.asList("java", "lambda")).build();
